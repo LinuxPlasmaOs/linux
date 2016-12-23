@@ -12,7 +12,7 @@
  * Copyright (C) 2005-2009 Wind River Systems, Inc.
  * Copyright (C) 2007 MontaVista Software, Inc.
  * Copyright (C) 2008 Red Hat, Inc., Ingo Molnar <mingo@redhat.com>
- *
+ * Copyright (C) 2016 Juho Heiskanen ≤juho.heiskanen@gafe.joroinen.fi≥
  * Contributors at various stages not listed above:
  *  Jason Wessel ( jason.wessel@windriver.com )
  *  George Anzinger <george@mvista.com>
@@ -31,7 +31,7 @@
 #define pr_fmt(fmt) "KGDB: " fmt
 
 #include <linux/pid_namespace.h>
-#include <linux/clocksource.h>
+#include <linux/clocksource.h> 
 #include <linux/serial_core.h>
 #include <linux/interrupt.h>
 #include <linux/spinlock.h>
@@ -140,14 +140,13 @@ static pid_t			kgdb_sstep_pid;
 atomic_t			kgdb_cpu_doing_single_step = ATOMIC_INIT(-1);
 
 /*
- * If you are debugging a problem where roundup (the collection of
+ * If
+ you are debugging a problem where roundup (the collection of
  * all other CPUs) is a problem [this should be extremely rare],
  * then use the nokgdbroundup option to avoid roundup. In that case
  * the other CPUs might interfere with your debugging context, so
- * use this with care:
- */
-static int kgdb_do_roundup = 1;
 
+* use this with care:  */static int kgdb_do_roundup = 1;
 static int __init opt_nokgdbroundup(char *str)
 {
 	kgdb_do_roundup = 0;
